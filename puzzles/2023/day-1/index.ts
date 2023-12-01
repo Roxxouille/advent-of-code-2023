@@ -1,11 +1,7 @@
 import { readData } from "../../../utils/readData";
 
 type Input = string[];
-type Filename =
-  | "input-a.txt"
-  | "input-a-sample.txt"
-  | "input-b.txt"
-  | "input-b-sample.txt";
+type Filename = "input.txt" | "sample-a.txt" | "sample-b.txt";
 
 const year = 2023;
 const day = 1;
@@ -21,7 +17,6 @@ function challenge1(input: Input) {
         .split("")
         .map(Number)
         .filter((n) => !Number.isNaN(n));
-      console.log(digits);
       return Number(`${digits[0]}${digits[digits.length - 1]}`);
     })
     .reduce((acc, value) => acc + value, 0);
@@ -60,16 +55,15 @@ function challenge2(input: Input) {
     .reduce((acc, value) => acc + value, 0);
 }
 
-const [inputA, inputASample, inputB, inputBSample] = await Promise.all([
-  getInput("input-a.txt"),
-  getInput("input-a-sample.txt"),
-  getInput("input-b.txt"),
-  getInput("input-b-sample.txt"),
+const [input, sampleA, sampleB] = await Promise.all([
+  getInput("input.txt"),
+  getInput("sample-a.txt"),
+  getInput("sample-b.txt"),
 ]);
 
 console.table({
-  "Part 1 (sample)": challenge1(inputASample),
-  "Part 1 (final)": challenge1(inputA),
-  "Part 2 (sample)": challenge2(inputBSample),
-  "Part 2 (final)": challenge2(inputB),
+  "Part 1 (sample)": challenge1(sampleA),
+  "Part 1 (final)": challenge1(input),
+  "Part 2 (sample)": challenge2(sampleB),
+  "Part 2 (final)": challenge2(input),
 });
