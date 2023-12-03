@@ -18,12 +18,12 @@ function challenge2(input: Input) {
   return input;
 }
 
-const [input, inputSample] = await Promise.all([
+const [input, sample] = await Promise.all([
   getInput("input.txt"),
   getInput("sample.txt"),
 ]);
 
 console.log({
-  "Part 1 (sample)": challenge1(inputSample),
+  "Part 1 (sample)": challenge1(sample),
   "Part 1 (final)": challenge1(input),
 });

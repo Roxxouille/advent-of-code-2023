@@ -40,11 +40,11 @@ function challenge1(input: Input) {
 function challenge2(input: Input) {
   return input.reduce((acc, str) => {
     const powers: Record<string, number> = { red: 0, green: 0, blue: 0 };
-    const yolo = str
+    const format = str
       .split(/(:|,|;)/)
       .filter((value) => value !== ":" && value !== ";" && value !== ",")
       .map((value) => value.trim());
-    yolo.forEach((value, index) => {
+    format.forEach((value, index) => {
       if (index === 0) return;
       const [cubes, color] = value.split(" ");
       if (Number(cubes) > powers[color]) {
