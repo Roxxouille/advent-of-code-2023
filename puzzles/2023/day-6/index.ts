@@ -28,9 +28,7 @@ function challenge1(input: Input) {
 }
 
 function challenge2(input: Input) {
-  const [maxTime, distanceToBeat] = input.map((str) =>
-    Number(str.replace(/\s+/g, "").match(/\d+/g)?.[0])
-  );
+  const [maxTime, distanceToBeat] = input.map((str) => Number(str.replace(/\s+/g, "").match(/\d+/g)?.[0]));
   let possibilities = 0;
   for (let milliseconds = 1; milliseconds < maxTime; milliseconds++) {
     const distance = milliseconds * (maxTime - milliseconds);
@@ -39,10 +37,7 @@ function challenge2(input: Input) {
   return possibilities;
 }
 
-const [input, sample] = await Promise.all([
-  getInput("input.txt"),
-  getInput("sample.txt"),
-]);
+const [input, sample] = await Promise.all([getInput("input.txt"), getInput("sample.txt")]);
 
 console.log({
   "Part 1 (sample)": challenge1(sample),

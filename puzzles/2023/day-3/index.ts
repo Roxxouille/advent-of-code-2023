@@ -16,7 +16,7 @@ function format(input: string[]) {
       x: characterIndex,
       y: lineIndex,
       content: character,
-    }))
+    })),
   );
 }
 

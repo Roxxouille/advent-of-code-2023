@@ -11,15 +11,12 @@ async function getInput(filename: Filename): Promise<string> {
 
 function challenge1(input: string) {
   const [unformatedSeeds, ...unformatedMaps] = input.split("\n\n");
-  let seeds: (number | null)[] = unformatedSeeds
-    .split(": ")[1]
-    .split(" ")
-    .map(Number);
+  let seeds: (number | null)[] = unformatedSeeds.split(": ")[1].split(" ").map(Number);
   const maps = unformatedMaps.map((map) =>
     map
       .split(":\n")[1]
       .split("\n")
-      .map((line) => line.split(" ").map(Number))
+      .map((line) => line.split(" ").map(Number)),
   );
   maps.forEach((map) => {
     const newSeeds: number[] = [];
@@ -41,7 +38,7 @@ function challenge1(input: string) {
 function chunk<T>(arr: Array<T>, chunkLength: number) {
   arr = [...arr];
   return [...Array(Math.ceil(arr.length / chunkLength))].map((_, index) =>
-    arr.slice(index * chunkLength, (index + 1) * chunkLength)
+    arr.slice(index * chunkLength, (index + 1) * chunkLength),
   );
 }
 
@@ -69,26 +66,23 @@ export function findRangesIntersection([a, b]: number[], [c, d]: number[]) {
 
 function challenge2(input: string) {
   const [unformatedSeeds, ...unformatedMaps] = input.split("\n\n");
-  let seedsRanges = chunk(
-    unformatedSeeds.split(": ")[1].split(" ").map(Number),
-    2
-  ).map(([seed, length]) => [seed, seed + length - 1]);
+  let seedsRanges = chunk(unformatedSeeds.split(": ")[1].split(" ").map(Number), 2).map(([seed, length]) => [
+    seed,
+    seed + length - 1,
+  ]);
 
   const maps = unformatedMaps.map((map) =>
     map
       .split(":\n")[1]
       .split("\n")
-      .map((line) => line.split(" ").map(Number))
+      .map((line) => line.split(" ").map(Number)),
   );
 
   maps.forEach((map) => {
     const newSeedsRanges: number[][] = [];
     map.forEach(([to, from, length]) => {
       seedsRanges = seedsRanges.flatMap((seedRange) => {
-        const toMove = findRangesIntersection(
-          [from, from + length - 1],
-          seedRange
-        );
+        const toMove = findRangesIntersection([from, from + length - 1], seedRange);
         if (!toMove) {
           return [seedRange];
         }
@@ -105,10 +99,7 @@ function challenge2(input: string) {
   return Math.min(...seedsRanges.map(([min]) => min));
 }
 
-const [input, sample] = await Promise.all([
-  getInput("input.txt"),
-  getInput("sample.txt"),
-]);
+const [input, sample] = await Promise.all([getInput("input.txt"), getInput("sample.txt")]);
 
 console.log({
   "Part 1 (sample)": challenge1(sample),

@@ -56,10 +56,7 @@ function challenge2(input: Input) {
   }, 0);
 }
 
-const [input, inputSample] = await Promise.all([
-  getInput("input.txt"),
-  getInput("sample.txt"),
-]);
+const [input, inputSample] = await Promise.all([getInput("input.txt"), getInput("sample.txt")]);
 
 console.log({
   "Part 1 (sample)": challenge1(inputSample),

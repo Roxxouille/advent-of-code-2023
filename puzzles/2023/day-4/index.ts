@@ -54,10 +54,7 @@ function challenge2(input: Input) {
   return scratchcards.reduce((acc, card) => (acc += card.copy), 0);
 }
 
-const [input, sample] = await Promise.all([
-  getInput("input.txt"),
-  getInput("sample.txt"),
-]);
+const [input, sample] = await Promise.all([getInput("input.txt"), getInput("sample.txt")]);
 
 console.log({
   "Part 1 (sample)": challenge1(sample),
